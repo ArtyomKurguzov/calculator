@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin-top: 0;
+            
+        }
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(rgb(0, 255, 98), rgb(15, 104, 6));
+}
+        .b1{
+            display:flex ;
+            justify-content: center;
+            align-items: center;
+            margin-top: 90px;
+            flex-direction: column;
+            width: 300px;
+            background-color: rgb(0, 183, 255);
+            -webkit-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+            box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+            border-radius: 5%;
+            height: 400px;
+        }
+        .t{
+            width: 50px;
+            height:50px;
+            margin-top: 5px;
+            border-color: black;
+            border-radius: 10%;
+        }
+        .b2{
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: rgb(19, 1, 5);
+            border-radius: 5%;
+        }
+        .sum{
+            background-color: rgb(187, 184, 184);
+            -webkit-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+            box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+            border-radius: 5%;
+        }
+        .e{
+            margin-top: 10px;
+        }
+        .sum{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+        }
+        input{
+            border-radius: 7%;
+        }
+        .error{
+            margin-top: 10px;
+        background-color: rgb(92, 4, 4);
+        border-radius: 5%;
+        color: white;
+        width: 180px;
+        display: flex;
+    
+        justify-content: center;
+        } 
+    </style>
+</head>
+
+<body>
+    <div class="b1">
+        <h1 class="e">Калькулятор</h1>
+
+        <input type="text" id="calculator">
+
+        <div class="b2">
+            <div>
+                <input class="t 1" type="button" value="1" onclick="calc(this.value)" >
+                <input class="t 2" type="button" value="2" onclick="calc(this.value)">
+                <input class="t 3" type="button" value="3" onclick="calc(this.value)">
+            </div>
+            <div>
+                <input class="t 4" type="button" value="4" onclick="calc(this.value)">
+                <input class="t 5" type="button" value="5" onclick="calc(this.value)">
+                <input class="t 6" type="button" value="6" onclick="calc(this.value)">
+            </div>
+            <div>
+                <input class="t 7" type="button" value="7" onclick="calc(this.value)">
+                <input class="t 8" type="button" value="8" onclick="calc(this.value)">
+                <input class="t 9" type="button" value="9" onclick="calc(this.value)">
+            </div>
+            <div>
+                <input class="t 10" type="button" value="10" onclick="calc(this.value)">
+                <input class="t 11" type="button" value="+" onclick="sumb(this.value)">
+                <input class="t 12" type="button" value="-" onclick="sumb(this.value)">
+            </div>
+        </div>
+        <p id="error" class="error"></p>
+        <p id="sum" class="sum"></p>
+    </div>
+</body>
+
+<script>
+        var numner_one;
+        var numner_two;
+        var symb;
+
+
+    function calc(number, subm) {
+
+        if(numner_one == undefined ){
+            numner_one = number
+            document.getElementById('calculator').value += number
+            document.getElementById('error').textContent = undefined
+        } 
+
+        else if(symb == undefined && numner_one != undefined){
+            document.getElementById('error').textContent = 'Дурак, ты что творишь!'
+        }
+
+
+        
+        else if(numner_two == undefined){
+            numner_two = number
+            document.getElementById('calculator').value += number
+
+            if(symb == '+'){
+                 
+                document.getElementById('sum').textContent = Number(numner_one) + Number(numner_two)
+                document.getElementById('error').textContent = undefined
+            }
+            else if(symb == '-'){
+               
+                document.getElementById('sum').textContent = Number(numner_one) - Number(numner_two)
+                document.getElementById('error').textContent = undefined
+            }
+        }
+        else if(numner_one !=undefined && symb != undefined && numner_two != undefined){
+            numner_one = number
+            symb = undefined
+            numner_two = undefined
+            document.getElementById('calculator').value = number
+            document.getElementById('error').textContent = undefined
+      
+        }
+
+        else if(symb == undefined && numner_one == undefined){
+            document.getElementById('error').textContent = 'Дурак, ты что творишь'
+        }
+        else {
+            document.getElementById('error').textContent = 'Дурак, ты что творишь'
+        }
+
+
+      
+    
+    }
+    function sumb(sy){
+        if(symb == undefined && numner_one != undefined)
+        {
+            symb = sy
+            document.getElementById('calculator').value += sy
+            document.getElementById('error').textContent = undefined
+        }
+        else{
+            document.getElementById('error').textContent = 'Дурак, ты что творишь'
+        }
+    }
+</script>
+</html>
